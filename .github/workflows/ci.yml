@@ -20,14 +20,13 @@ jobs:
       - name: Run Test 
         run : npm test
       - name: Package build output as ZIP
-        run: |
+        run : |
           mkdir output
           cp -r src output/
-          cp package.json output/
-          zip -r build.zip output/
-
+          cp package.json output
+          zip -r build.zip output
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: build-zip
-          path: build.zip
+          path: build.zip 
