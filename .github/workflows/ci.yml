@@ -19,6 +19,7 @@ jobs:
         run: npm ci
       - name: Run Test 
         run : npm test
+
       - name: Package build output as ZIP
         run : |
           mkdir output
@@ -30,3 +31,34 @@ jobs:
         with:
           name: build-zip
           path: build.zip 
+      - name: Notify Success via Email
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "✅ CI Build Success - ${{ github.repository }}"
+          body: |
+            The build for ${{ github.repository }} on branch ${{ github.ref_name }} succeeded.
+            Commit: ${{ github.sha }}
+          to: ${{ secrets.EMAIL_TO }}
+          from: ${{ secrets.EMAIL_FROM }}
+
+      - name: Notify Failure via Email
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "❌ CI Build Failed - ${{ github.repository }}"
+          body: |
+            The build for ${{ github.repository }} on branch ${{ github.ref_name }} failed.
+            Commit: ${{ github.sha }}
+          to: ${{ secrets.EMAIL_TO }}
+          from: ${{ secrets.EMAIL_FROM }}
+
+        
