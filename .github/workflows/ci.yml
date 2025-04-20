@@ -24,6 +24,8 @@ jobs:
 
       - name: Run tests
         run: npm test
+      - name: Debug network
+        run: curl https://github.com/actions/upload-artifact
 
       - name: Upload test results
         if: always()
