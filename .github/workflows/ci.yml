@@ -35,7 +35,7 @@ jobs:
         if: success()
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp@gmail.com
+          server_address: smtp.gmail.com
           server_port: 587
           username: ganitniduniyanikunj10@gmail.com
           password: zozs zxgm wofs fkqn
