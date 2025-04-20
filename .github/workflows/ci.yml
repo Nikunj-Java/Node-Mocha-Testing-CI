@@ -43,7 +43,7 @@ jobs:
           body: |
             The build for ${{ github.repository }} on branch ${{ github.ref_name }} succeeded.
             Commit: ${{ github.sha }}
-          to: ${{ secrets.EMAIL_TO }}
-          from: ${{ secrets.EMAIL_FROM }}
+          to: ganitniduniyanikunj10@gmail.com
+          from: ganitniduniyanikunj10@gmail.com
 
       
