@@ -35,10 +35,10 @@ jobs:
         if: success()
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: ${{ secrets.SMTP_PORT }}
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
+          server_address: smtp@gmail.com
+          server_port: 587
+          username: ganitniduniyanikunj10@gmail.com
+          password: zozs zxgm wofs fkqn
           subject: "✅ CI Build Success - ${{ github.repository }}"
           body: |
             The build for ${{ github.repository }} on branch ${{ github.ref_name }} succeeded.
@@ -46,19 +46,4 @@ jobs:
           to: ${{ secrets.EMAIL_TO }}
           from: ${{ secrets.EMAIL_FROM }}
 
-      - name: Notify Failure via Email
-        if: failure()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: ${{ secrets.SMTP_PORT }}
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: "❌ CI Build Failed - ${{ github.repository }}"
-          body: |
-            The build for ${{ github.repository }} on branch ${{ github.ref_name }} failed.
-            Commit: ${{ github.sha }}
-          to: ${{ secrets.EMAIL_TO }}
-          from: ${{ secrets.EMAIL_FROM }}
-
-        
+      
